@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EnglishvocabularyQuiz</string>
+    <string name="button_next">次へ</string>
 </resources>

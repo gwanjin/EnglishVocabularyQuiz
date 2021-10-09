@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="vocaViewModel"
+            type="com.gwanjin.englishvocabularyquiz.vocabulary.VocaViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10"
+        tools:context=".vocabulary.VocaFragment">
+
+        <TextView
+            android:id="@+id/question"
+            android:padding="15dp"
+            android:textSize="20sp"
+            android:text="@{vocaViewModel.data.question.question}"
+            android:gravity="center_vertical"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:textColor="@color/font_notice_title_color" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5">
+
+            <TextView
+                android:id="@+id/word"
+                android:text="@{vocaViewModel.data.question.word}"
+                android:textColor="@color/font_word_color"
+                android:onClick="@{() -> vocaViewModel.playAudio()}"
+                android:textSize="50sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btn_voice"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/voiceicon"
+                android:onClick="@{() -> vocaViewModel.playAudio()}"
+                android:layout_width="20dp"
+                android:layout_height="16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_ready"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4">
+
+            <!-- 1番目の選択ボタン -->
+            <include layout="@layout/layout_choice_top_area"
+                bind:vocaViewModel="@{vocaViewModel}"/>
+
+            <!-- 2番目の選択ボタン -->
+            <include layout="@layout/layout_choice_middle_area"
+                bind:vocaViewModel="@{vocaViewModel}"/>
+
+            <!-- 3番目の選択ボタン -->
+            <include layout="@layout/layout_choice_bottom_area"
+                bind:vocaViewModel="@{vocaViewModel}"/>
+
+            <LinearLayout
+                android:id="@+id/layout_next_btn"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:elevation="10dp"
+                android:gravity="center"
+                android:background="@drawable/border_round_next"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="@{vocaViewModel.isReset? View.INVISIBLE : View.VISIBLE}"
+                android:onClick="@{() -> vocaViewModel.getNewData()}">
+
+                <TextView
+                    android:id="@+id/txt_next"
+                    android:textStyle="bold"
+                    android:textColor="@color/font_next_button_color"
+                    android:text="@string/button_next"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="vocaViewModel"
+            type="com.gwanjin.englishvocabularyquiz.vocabulary.VocaViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <FrameLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/layout_choice1_btn_default"
+            android:elevation="10dp"
+            android:background="@drawable/border_round_default"
+            android:visibility="@{vocaViewModel.isReset() ? View.VISIBLE : View.INVISIBLE}"
+            android:onClick="@{() -> vocaViewModel.clicedChoice1()}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_choice1"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@{vocaViewModel.data.answer[0].text}"
+                android:textStyle="bold"
+                android:textColor="@color/font_word_color"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+
+        <!-- 正解ボタン -->
+        <FrameLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/layout_choice1_btn_correct"
+            android:background="@drawable/border_round_correct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{vocaViewModel.statusChoice1 == 1 ? View.VISIBLE : View.INVISIBLE}">
+
+            <ImageView
+                android:id="@+id/iv_correct_icon1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/correct"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
+            <TextView
+                android:id="@+id/txt_correct_choice1"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:text="@{vocaViewModel.data.answer[0].text}"
+                android:textColor="@color/font_correct_color"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+
+        <!-- 不正解ボタン -->
+        <FrameLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/layout_choice1_btn_incorrect"
+            android:background="@drawable/border_round_incorrect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{vocaViewModel.statusChoice1 == 2 ? View.VISIBLE : View.INVISIBLE}">
+
+            <ImageView
+                android:id="@+id/iv_incorrect_icon1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/incorrect"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
+            <TextView
+                android:id="@+id/txt_disabled_choice1"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/font_incorrect_color"
+                android:text="@{vocaViewModel.data.answer[0].text}"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/layout_choice1_btn_disabled"
+            android:background="@drawable/border_round_disabled"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{vocaViewModel.statusChoice1 == 3 ? View.VISIBLE : View.INVISIBLE}">
+
+            <TextView
+                android:id="@+id/txt_incorrect_choice1"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:text="@{vocaViewModel.data.answer[0].text}"
+                android:textColor="@color/font_disabled_color"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+
+    </FrameLayout>
+
+</layout>
