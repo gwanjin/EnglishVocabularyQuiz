@@ -19,7 +19,7 @@
             android:elevation="10dp"
             android:background="@drawable/border_round_default"
             android:visibility="@{vocaViewModel.isReset() ? View.VISIBLE : View.INVISIBLE}"
-            android:onClick="@{() -> vocaViewModel.clicedChoice1()}"
+            android:onClick="@{() -> vocaViewModel.clickedAnswer1()}"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

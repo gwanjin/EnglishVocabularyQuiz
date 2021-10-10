@@ -1,9 +1,7 @@
 package com.gwanjin.englishvocabularyquiz.vocabulary
 
 import android.content.Context
-import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.gwanjin.englishvocabularyquiz.R
-import com.gwanjin.englishvocabularyquiz.client.VocaQuizService
-import com.gwanjin.englishvocabularyquiz.data.Answer
-import com.gwanjin.englishvocabularyquiz.data.Question
-import com.gwanjin.englishvocabularyquiz.data.ResultGetVocaTest
 import com.gwanjin.englishvocabularyquiz.databinding.FragmentWordBinding
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 class VocaFragment : Fragment() {
 
@@ -47,12 +39,9 @@ class VocaFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
-
         viewModel = ViewModelProvider(this).get(VocaViewModel::class.java)
         mBinding.lifecycleOwner = activity
         mBinding.vocaViewModel = viewModel
-        viewModel.getNewData()
     }
 
     override fun onDestroyView() {
